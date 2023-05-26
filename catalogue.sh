@@ -6,6 +6,7 @@ yum install nodejs -y &>>/tmp/roboshop.log
 
 echo -e "\e[33m Add application User and app directory\e[0m"
 useradd roboshop &>>/tmp/roboshop.log
+rm -rf /app
 mkdir /app 
 
 echo -e "\e[33m Download the application code \e[0m"

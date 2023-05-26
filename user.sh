@@ -11,7 +11,7 @@ npm install
 cp  /home/centos/roboshop-shell/cart.service /etc/systemd/system/user.service
 systemctl daemon-reload
 systemctl enable user 
-systemctl start user
+systemctl restart user
 cp mongodb.repo /etc/yum.repos.d/mongodb.repo
 yum install mongodb-org-shell -y
 mongo --host MONGODB-SERVER-IPADDRESS </app/schema/user.js

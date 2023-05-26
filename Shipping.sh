@@ -9,11 +9,11 @@ mkdir /app
 echo -e "\e[33m download the content \e[0m"
 curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip  &>>/tmp/roboshop.log
 cd /app 
-unzip /tmp/shipping.zip
+unzip /tmp/shipping.zip &>>/tmp/roboshop.log
 
 echo -e "\e[33m extracat the file \e[0m"
 cd /app  &>>/tmp/roboshop.log
-mvn clean package 
+mvn clean package &>>/tmp/roboshop.logs
 mv target/shipping-1.0.jar shipping.jar  &>>/tmp/roboshop.log
 
 echo -e "\e[33m reload \e[0m"

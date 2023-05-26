@@ -21,6 +21,11 @@ npm install  &>>/tmp/roboshop.log
 echo -e "\e[33m setup systemd service\e[0m"
 cp user.service /etc/systemd/system/user.service &>>/tmp/roboshop.log
 
+echo -e "\e[33m start user service\e[0m"
+systemctl daemon-reload &>>/tmp/roboshop.log
+systemctl enable user 
+systemctl start user
+
 echo -e "\e[33m setup mongodb repo\e[0m"
 cp mongodb.repo /etc/yum.repos.d/mongodb.repo  &>>/tmp/roboshop.log
 
@@ -31,6 +36,3 @@ echo -e "\e[33m Load schema \e[0m"
 mongo --host MONGODB-SERVER-IPADDRESS </app/schema/user.js &>>/tmp/roboshop.log
 
 echo -e "\e[33m start user service\e[0m"
-systemctl daemon-reload &>>/tmp/roboshop.log
-systemctl enable user 
-systemctl start user

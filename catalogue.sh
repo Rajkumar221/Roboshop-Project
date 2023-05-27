@@ -33,4 +33,4 @@ cp mongodb.repo etc/yum.repos.d/mongodg.repo &>>/tmp/roboshop.log
 yum install mongodb-org-shell -y &>>/tmp/roboshop.log
 
 echo -e "\e[33m Load Schema\e[0m"
-mongo --host 172.31.7.242 </app/schema/catalogue.js &>>/tmp/roboshop.log
+mongo --host 172.31.0.81 </app/schema/catalogue.js &>>/tmp/roboshop.log

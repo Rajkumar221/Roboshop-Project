@@ -5,7 +5,7 @@ echo -e "\e[33m add user \e[0m"
 useradd roboshop &>>/tmp/roboshop.log
 
 echo -e "\e[33m make app directory \e[0m"
-rm-f /app
+rm -rf /app
 mkdir /app &>>/tmp/roboshop.log
  
 echo -e "\e[33m download the app content \e[0m"

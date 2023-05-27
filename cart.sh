@@ -23,7 +23,7 @@ echo -e "\e[33m Install NodeJS Dependencies\e[0m"
 npm install  &>>/tmp/roboshop.log
 
 echo -e "\e[33m Setup SystemD Service  \e[0m"
-cp /home/centos/Roboshop-Project/cart.service /etc/systemd/system/cart.service  &>>/tmp/roboshop.log
+cp /home/centos/roboshop-shell/cart.service /etc/systemd/system/cart.service  &>>/tmp/roboshop.log
 
 echo -e "\e[33m Start Cart Service \e[0m"
 systemctl daemon-reload  &>>/tmp/roboshop.log

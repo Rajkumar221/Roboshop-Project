@@ -21,7 +21,7 @@ cd /app  &>>/tmp/roboshop.log
 npm install  &>>/tmp/roboshop.log
 
 echo -e "\e[33m Setup SystemD Catalogue Service\e[0m"
-cp catalogue.service /etc/systemd/system/catalogue.service &>>/tmp/roboshop.log
+cp /home/centos/Roboshop-Project/catalogue.service /etc/systemd/system/catalogue.service &>>/tmp/roboshop.log
 
 echo -e "\e[33m start catalogue service\e[0m"
 systemctl daemon-reload &>>/tmp/roboshop.log
@@ -33,4 +33,4 @@ cp mongodb.repo etc/yum.repos.d/mongodg.repo &>>/tmp/roboshop.log
 yum install mongodb-org-shell -y &>>/tmp/roboshop.log
 
 echo -e "\e[33m Load Schema\e[0m"
-mongo --host 172.31.6.251 </app/schema/catalogue.js &>>/tmp/roboshop.log
+mongo --host MONGODB IP ADDRESS </app/schema/catalogue.js &>>/tmp/roboshop.log

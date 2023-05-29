@@ -1,28 +1,33 @@
-echo -e "\e[33m Install Python\e[0m"
+source common.sh
+component=payment
+app_path="/app"
+
+
+echo -e "${color} Install Python${nocolor}"
 yum install python36 gcc python3-devel -y &>>/tmp/roboshop.log
 
-echo -e "\e[33m Add Application User \e[0m"
+echo -e "${color} Add Application User ${nocolor}"
 useradd roboshop &>>/tmp/roboshop.log
 
-echo -e "\e[33m Create Application Directory\e[0m"
-rm -rf /app &>>/tmp/roboshop.log
-mkdir /app
+echo -e "${color} Create Application Directory${nocolor}"
+rm -rf $app_path &>>/tmp/roboshop.log
+mkdir $app_path
 
-echo -e "\e[33m Download Application Content \e[0m"
-curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip &>>/tmp/roboshop.log
-cd /app
+echo -e "${color} Download Application Content ${nocolor}"
+curl -L -o /tmp/$component.zip https://roboshop-artifacts.s3.amazonaws.com/$component.zip &>>/tmp/roboshop.log
+cd $app_path
 
-echo -e "\e[33m Extract Application Content \e[0m"
-unzip /tmp/payment.zip &>>/tmp/roboshop.log
+echo -e "${color} Extract Application Content ${nocolor}"
+unzip /tmp/$component.zip &>>/tmp/roboshop.log
 
-echo -e "\e[33m Install Application Dependencies \e[0m"
-cd /app
+echo -e "${color} Install Application Dependencies ${nocolor}"
+cd $app_path
 pip3.6 install -r requirements.txt &>>/tmp/roboshop.log
 
-echo -e "\e[33m Setup SystemD File \e[0m"
-cp /home/centos/Roboshop-Project/payment.service /etc/systemd/system/payment.service   &>>/tmp/roboshop.log
+echo -e "${color} Setup SystemD File ${nocolor}"
+cp /home/centos/Roboshop-Project/$component.service /etc/systemd/system/$component.service   &>>/tmp/roboshop.log
 
-echo -e "\e[33m Start Payment Serrvice \e[0m"
+echo -e "${color} Start Payment Serrvice ${nocolor}"
 systemctl daemon-reload &>>/tmp/roboshop.log
-systemctl enable payment  &>>/tmp/roboshop.log
-systemctl restart payment &>>/tmp/roboshop.log
+systemctl enable $component  &>>/tmp/roboshop.log
+systemctl restart $component &>>/tmp/roboshop.log

@@ -82,3 +82,30 @@ echo -e "${color} start shipping service ${nocolor}"
 systemctl enable shipping &>>$log_file
 systemctl restart shipping &>>$log_file
 }
+
+python() {
+    echo -e "${color} install python ${nocolor}"
+yum install python36 gcc python3-devel -y &>>$log_file
+
+echo -e "${color} add user ${nocolor}"
+useradd roboshop &>>$log_file
+
+echo -e "${color} make app directory ${nocolor}"
+rm -rf /app &>>$log_file
+mkdir /app &>>$log_file
+ 
+echo -e "${color} download the app content ${nocolor}"
+curl -L -o /tmp/$component.zip https://roboshop-artifacts.s3.amazonaws.com/$component.zip  &>>$log_file
+unzip /tmp/$component.zip &>>$log_file
+
+echo -e "${color} install dependencies ${nocolor}"
+cd /app  &>>$log_file
+pip3.6 install -r requirements.txt &>>$log_file
+
+echo -e "${color} setup systemd service ${nocolor}"
+cp $component.service /etc/systemd/system/$component.service &>>$log_file
+
+echo -e "${color} reload ${nocolor}"
+systemctl daemon-reload &>>$log_file
+systemctl restart $component
+}

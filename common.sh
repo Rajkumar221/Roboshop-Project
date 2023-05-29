@@ -1,7 +1,7 @@
 color="\e[36m"
-nocolor="${nocolor}"
-log_file="$log_file"
-app_path="${app_path}"
+nocolor=\e[0m"
+log_file="/tmp/roboshop.log"
+app_path="/app"
 
 
 nodejs() {

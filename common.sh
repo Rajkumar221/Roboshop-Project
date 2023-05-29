@@ -3,12 +3,6 @@ nocolor="${nocolor}"
 log_file="$log_file"
 app_path="${app_path}"
 
-app_presetup() {
-echo -e "${color} Add application User and app directory ${nocolor}"
-useradd roboshop &>>$log_file
-rm -rf ${app_path}
-mkdir ${app_path} 
-}
 
 nodejs() {
 echo -e "${color} Setup NodeJS repos ${nocolor}"
@@ -17,7 +11,10 @@ curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$log_file
 echo -e "${color} Install NodeJS ${nocolor}"
 yum install nodejs -y &>>$log_file
 
-app_presetup
+echo -e "${color} Add application User and app directory ${nocolor}"
+useradd roboshop &>>$log_file
+rm -rf ${app_path}
+mkdir ${app_path} 
 
 echo -e "${color} Download the application code ${nocolor}"
 curl -o /tmp/$component.zip https://roboshop-artifacts.s3.amazonaws.com/$component.zip  &>>$log_file
@@ -55,7 +52,10 @@ maven() {
 echo -e "${color} install maven${nocolor}"
 yum install maven -y &>>$log_file
 
-app_presetup 
+echo -e "${color} Add application User and app directory ${nocolor}"
+useradd roboshop &>>$log_file
+rm -rf ${app_path}
+mkdir ${app_path} 
 
 echo -e "${color} download the content ${nocolor}"
 curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip  &>>$log_file

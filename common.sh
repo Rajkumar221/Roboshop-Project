@@ -35,3 +35,14 @@ systemctl enable $component  &>>$log_file
 systemctl restart $component &>>$log_file
 
 }
+
+mongo_schema_setup() {
+echo -e "\e[33m Copy MongoDB Repo file \e[0m"
+cp /home/centos/Roboshop-Project/mongodb.repo /etc/yum.repos.d/mongodb.repo  &>>/tmp/roboshop.log
+
+echo -e "\e[33m Install MongoDB Client \e[0m"
+yum install mongodb-org-shell -y  &>>/tmp/roboshop.log
+
+echo -e "\e[33m Load Schema \e[0m"
+mongo --host mongodb-dev.devopsb73.store </app/schema/user.js  &>>/tmp/roboshop.log
+}

@@ -20,7 +20,7 @@ cd /app
 pip3.6 install -r requirements.txt &>>/tmp/roboshop.log
 
 echo -e "\e[33m Setup SystemD File \e[0m"
-cp /home/centos/roboshop-shell/payment.service /etc/systemd/system/payment.service   &>>/tmp/roboshop.log
+cp /home/centos/Roboshop-Project/payment.service /etc/systemd/system/payment.service   &>>/tmp/roboshop.log
 
 echo -e "\e[33m Start Payment Serrvice \e[0m"
 systemctl daemon-reload &>>/tmp/roboshop.log

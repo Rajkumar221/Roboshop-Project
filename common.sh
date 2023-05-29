@@ -84,28 +84,33 @@ systemctl restart shipping &>>$log_file
 }
 
 python() {
-    echo -e "${color} install python ${nocolor}"
+ echo -e "${color} Install Python${nocolor}"
 yum install python36 gcc python3-devel -y &>>$log_file
 
-echo -e "${color} add user ${nocolor}"
+echo -e "${color} Add Application User ${nocolor}"
 useradd roboshop &>>$log_file
 
-echo -e "${color} make app directory ${nocolor}"
-rm -rf /app &>>$log_file
-mkdir /app &>>$log_file
- 
-echo -e "${color} download the app content ${nocolor}"
-curl -L -o /tmp/$component.zip https://roboshop-artifacts.s3.amazonaws.com/$component.zip  &>>$log_file
+echo -e "${color} Create Application Directory${nocolor}"
+rm -rf $app_path &>>$log_file
+mkdir $app_path
+
+echo -e "${color} Download Application Content ${nocolor}"
+curl -L -o /tmp/$component.zip https://roboshop-artifacts.s3.amazonaws.com/$component.zip &>>$log_file
+cd $app_path
+
+echo -e "${color} Extract Application Content ${nocolor}"
 unzip /tmp/$component.zip &>>$log_file
 
-echo -e "${color} install dependencies ${nocolor}"
-cd /app  &>>$log_file
+echo -e "${color} Install Application Dependencies ${nocolor}"
+cd $app_path
 pip3.6 install -r requirements.txt &>>$log_file
 
-echo -e "${color} setup systemd service ${nocolor}"
-cp /home/centos/Roboshop-Project/$component.service /etc/systemd/system/$component.service &>>$log_file
+echo -e "${color} Setup SystemD File ${nocolor}"
+cp /home/centos/Roboshop-Project/$component.service /etc/systemd/system/$component.service   &>>$log_file
 
-echo -e "${color} reload ${nocolor}"
+echo -e "${color} Start Payment Serrvice ${nocolor}"
 systemctl daemon-reload &>>$log_file
-systemctl restart $component
+systemctl enable $component  &>>$log_file
+systemctl restart $component &>>$log_file
+
 }

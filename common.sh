@@ -103,7 +103,7 @@ cd /app  &>>$log_file
 pip3.6 install -r requirements.txt &>>$log_file
 
 echo -e "${color} setup systemd service ${nocolor}"
-cp $component.service /etc/systemd/system/$component.service &>>$log_file
+cp /home/centos/Roboshop-Project/$component.service /etc/systemd/system/$component.service &>>$log_file
 
 echo -e "${color} reload ${nocolor}"
 systemctl daemon-reload &>>$log_file

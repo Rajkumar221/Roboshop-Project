@@ -1,5 +1,3 @@
-# roboshop nginx script
-
 Source common.sh
 
 echo -e "\e[33mInstalling Nginx Server\e[0m"

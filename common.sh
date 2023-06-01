@@ -70,7 +70,7 @@ yum install mongodb-org-shell -y  &>>$log_file
 stat_check $?
 
 echo -e "${color} Load Schema ${nocolor}"
-mongo --host mongodb-dev.devopsb73.store <${app_path}/schema/user.js  &>>$log_file
+mongo --host mongodb-dev.devops73.online <${app_path}/schema/$component.js  &>>$log_file
 stat_check $?
 }
 

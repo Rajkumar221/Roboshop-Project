@@ -1,6 +1,6 @@
 # roboshop nginx script
 
-Source Common.sh
+Source common.sh
 
 echo -e "\e[33mInstalling Nginx Server\e[0m"
 yum install nginx -y &>>/tmp/roboshop.log
